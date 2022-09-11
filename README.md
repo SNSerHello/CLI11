@@ -21,13 +21,13 @@ Reference][api-docs]
 
 
 
-## Windows编译
+## 在Windows下编译
 
 ```bash
 mkdir build
 cd build
 %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
-cmake .. -G "Visual Studio 15 2017 Win64" -DCLI11_WARNINGS_AS_ERRORS=OFF -DCLI11_SINGLE_FILE=ON -DCMAKE_INSTALL_PREFIX=../dist/CLI11
+cmake .. -G "Visual Studio 15 2017 Win64" -DCLI11_WARNINGS_AS_ERRORS=OFF -DCLI11_SINGLE_FILE=ON -DCMAKE_INSTALL_PREFIX=../dist/CLI
 msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 ALL_BUILD.vcxproj -t:rebuild
 ```
 
@@ -55,6 +55,33 @@ dist
         └── pkgconfig
             └── CLI11.pc
 ```
+
+
+
+## 在Ubuntu下编译
+
+```bash
+mkdir build
+cd build
+cmake .. -DCLI11_WARNINGS_AS_ERRORS=ON -DCLI11_SINGLE_FILE=ON -DCMAKE_INSTALL_PREFIX=../dist/CLI
+make -j4
+```
+
+**测试**
+
+```bash
+make test
+```
+
+**安装**
+
+```bash
+make install
+```
+
+
+
+---
 
 
 
