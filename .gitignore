@@ -13,3 +13,5 @@ a.out*
 /package.json
 /yarn.lock
 /CLI11.hpp
+
+dist/*

@@ -19,6 +19,45 @@
 [What's new](./CHANGELOG.md) • [Documentation][gitbook] • [API
 Reference][api-docs]
 
+
+
+## Windows编译
+
+```bash
+mkdir build
+cd build
+%comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+cmake .. -G "Visual Studio 15 2017 Win64" -DCLI11_WARNINGS_AS_ERRORS=OFF -DCLI11_SINGLE_FILE=ON -DCMAKE_INSTALL_PREFIX=../dist/CLI11
+msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 ALL_BUILD.vcxproj -t:rebuild
+```
+
+**测试**
+
+```bash
+msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 RUN_TESTS.vcxproj
+```
+
+**安装**
+
+```bash
+msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 INSTALL.vcxproj
+
+安装包目录结构
+dist
+└── CLI11
+    ├── include
+    │   └── CLI11.hpp
+    └── share
+        ├── cmake
+        │   └── CLI11
+        │       ├── CLI11Config.cmake
+        │       └── CLI11ConfigVersion.cmake
+        └── pkgconfig
+            └── CLI11.pc
+```
+
+
+
 CLI11 is a command line parser for C++11 and beyond that provides a rich feature
 set with a simple and intuitive interface.
 
